@@ -18,16 +18,16 @@ public class Player {
 	
 	@ManyToOne
 	@JoinColumn(name="team_id")
-	private int teamId;
+	private Team team;
 
 	public Player() {
 	}
 
-	public Player(int playerId, String name, int teamId) {
+	public Player(int playerId, String name, Team team) {
 		super();
 		this.playerId = playerId;
 		this.name = name;
-		this.teamId = teamId;
+		this.team = team;
 	}
 
 	public int getPlayerId() {
@@ -46,17 +46,17 @@ public class Player {
 		this.name = name;
 	}
 
-	public int getTeamId() {
-		return teamId;
+	public Team getTeam() {
+		return team;
 	}
 
-	public void setTeamId(int teamId) {
-		this.teamId = teamId;
+	public void setTeam(Team team) {
+		this.team = team;
 	}
 
 	@Override
 	public String toString() {
-		return "Player [playerId=" + playerId + ", name=" + name + ", teamId=" + teamId + "]";
+		return "Player [playerId=" + playerId + ", name=" + name + ", teamId=" + team + "]";
 	}
 
 }
