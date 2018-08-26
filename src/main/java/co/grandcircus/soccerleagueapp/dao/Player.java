@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 public class Player {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int playerId;
 	
 	private String name;
@@ -24,7 +24,6 @@ public class Player {
 	}
 
 	public Player(int playerId, String name, Team team) {
-		super();
 		this.playerId = playerId;
 		this.name = name;
 		this.team = team;
