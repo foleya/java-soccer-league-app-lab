@@ -26,7 +26,7 @@
 			</div>
 			
 			<div class="form-group">
-				<label class="sr-only" for="category">Team</label>
+				<label class="sr-only" for="team">Team</label>
 		  		<select class="form-control mb-2 mr-sm-2" id="team" name="teamId" required>
 		  			<option value="" disabled selected>Select a Team</option>
 		  			<c:forEach items="${ teams }" var="team">

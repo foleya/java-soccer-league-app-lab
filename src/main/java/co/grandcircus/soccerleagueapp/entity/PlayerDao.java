@@ -44,6 +44,11 @@ public class PlayerDao {
 		Player player = em.getReference(Player.class, playerId);
 		em.remove(player);
 	}
+
+	public Object findByTeam(String team) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	  
 	  
 }

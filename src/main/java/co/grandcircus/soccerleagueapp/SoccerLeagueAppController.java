@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.grandcircus.soccerleagueapp.dao.Player;
-import co.grandcircus.soccerleagueapp.dao.Team;
 import co.grandcircus.soccerleagueapp.entity.PlayerDao;
 import co.grandcircus.soccerleagueapp.entity.TeamDao;
 
@@ -20,6 +20,24 @@ public class SoccerLeagueAppController {
 	
 	@Autowired
 	private TeamDao teamDao;
+	
+	// Index
+	@RequestMapping("/")
+	public ModelAndView listPlayers(
+			@RequestParam(value="keyword", required=false) String keyword,
+			@RequestParam(value="team", required=false) String team) {
+		ModelAndView mav = new ModelAndView("index");
+		if (keyword != null && !keyword.isEmpty()) {
+			mav.addObject("players", playerDao.findByKeyword(keyword));
+		} else if (team != null && !team.isEmpty()) {
+			mav.addObject("players", playerDao.findByTeam(team));
+		} else {
+			mav.addObject("players", playerDao.findAll());
+		}
+		// list of teams needed for <select>
+		mav.addObject("teams", teamDao.findAll());
+		return mav;
+	}
 	
 	// Creating Players
 	@RequestMapping("/player/create")
@@ -36,20 +54,8 @@ public class SoccerLeagueAppController {
 		player.setName(name);
 		player.setTeam(teamDao.findById(teamId));
 		System.out.println(player);
-//		playerDao.create(player);
-		return new ModelAndView("redirect:/");
-	}
-	
-	@RequestMapping("/make")
-	public ModelAndView make() {
-		Player player = new Player();
-		player.setName("test");
-		Team team = teamDao.findById(1);
-		player.setTeam(team);
 		playerDao.create(player);
 		return new ModelAndView("redirect:/");
-		
-		
 	}
 	
 }

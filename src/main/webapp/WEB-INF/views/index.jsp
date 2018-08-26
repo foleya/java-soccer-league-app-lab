@@ -19,8 +19,16 @@
 		<h1>Coffee Shop Inventory</h1>
 		
 		<form class="form-inline" action="/" autocomplete="off">
-		  <label class="sr-only" for="keyword">Keyword</label>
-		  <input type="text" value="${param.keyword}" class="form-control mb-2 mr-sm-2" id="keyword" name="keyword" placeholder="Keyword">
+		  	<label class="sr-only" for="keyword">Keyword</label>
+		  	<input type="text" value="${param.keyword}" class="form-control mb-2 mr-sm-2" id="keyword" name="keyword" placeholder="Keyword">
+		
+			<label class="sr-only" for="team">Team</label>
+		  	<select class="form-control mb-2 mr-sm-2" id="category" name="category">
+				<option value="" selected>Search by Team</option>		  		
+		  		<c:forEach items="${ teams }" var="team">
+		  			<option <c:if test="${ team eq param.team }">selected</c:if>>${ team.name }</option>
+		  		</c:forEach>
+		  	</select>
 		
 		  <button type="submit" class="btn btn-primary mb-2 mr-2">Search</button>
 		  <c:if test="${not empty param.keyword}">
@@ -32,10 +40,8 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Item</th>
-					<th>Description</th>
-					<th>Quantity</th>
-					<th>Price</th>
+					<th>Player</th>
+					<th>Team</th>
 					<th>Edit</th>
 					<th>Delete<th>	
 				</tr>
