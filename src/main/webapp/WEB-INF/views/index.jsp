@@ -23,10 +23,10 @@
 		  	<input type="text" value="${param.keyword}" class="form-control mb-2 mr-sm-2" id="keyword" name="keyword" placeholder="Keyword">
 		
 			<label class="sr-only" for="team">Team</label>
-		  	<select class="form-control mb-2 mr-sm-2" id="category" name="category">
+		  	<select class="form-control mb-2 mr-sm-2" id="teamId" name="teamId">
 				<option value="" selected>Search by Team</option>		  		
 		  		<c:forEach var="team" items="${ teams }">
-		  			<option <c:if test="${ team eq param.team }">selected</c:if>>${ team.name }</option>
+		  			<option <c:if test="${ team eq param.team }">selected</c:if> value="${ team.teamId }">${ team.name }</option>
 		  		</c:forEach>
 		  	</select>
 		

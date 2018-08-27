@@ -26,12 +26,12 @@ public class SoccerLeagueAppController {
 	@RequestMapping("/")
 	public ModelAndView listPlayers(
 			@RequestParam(value="keyword", required=false) String keyword,
-			@RequestParam(value="team", required=false) String team) {
+			@RequestParam(value="teamId", required=false) Integer teamId) {
 		ModelAndView mav = new ModelAndView("index");
 		if (keyword != null && !keyword.isEmpty()) {
 			mav.addObject("players", playerDao.findByKeyword(keyword));
-		} else if (team != null && !team.isEmpty()) {
-			mav.addObject("players", playerDao.findByTeam(team));
+		} else if (teamId != null) {
+			mav.addObject("players", playerDao.findByTeamId(teamId));
 		} else {
 			mav.addObject("players", playerDao.findAll());
 		}

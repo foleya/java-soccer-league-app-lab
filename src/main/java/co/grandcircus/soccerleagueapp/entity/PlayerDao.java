@@ -45,9 +45,8 @@ public class PlayerDao {
 		em.remove(player);
 	}
 
-	public Object findByTeam(String team) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Player> findByTeamId(Integer teamId) {
+		return em.createQuery("From Player WHERE team_id=:teamId", Player.class).setParameter("teamId", teamId).getResultList();
 	}
 	  
 	  
