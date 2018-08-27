@@ -25,7 +25,7 @@
 			<label class="sr-only" for="team">Team</label>
 		  	<select class="form-control mb-2 mr-sm-2" id="category" name="category">
 				<option value="" selected>Search by Team</option>		  		
-		  		<c:forEach items="${ teams }" var="team">
+		  		<c:forEach var="team" items="${ teams }">
 		  			<option <c:if test="${ team eq param.team }">selected</c:if>>${ team.name }</option>
 		  		</c:forEach>
 		  	</select>
@@ -47,19 +47,17 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="item" items="${ items }">
+				<c:forEach var="player" items="${ players }">
 				<tr>
-					<td>${ item.name }</td>
-					<td>${ item.description }</td>
-					<td>${ item.quantity }</td>
-					<td>$${ item.price }</td>
-					<td><a href="/item/${ item.itemId }/update">Edit</td>
-					<td><a href="/delete-item/${ item.itemId }" onclick="return confirm('Are you sure you want to delete this?')">Delete</td>
+					<td>${ player.name }</td>
+					<td>${ player.team.name }</td>
+					<td><a href="/player/${ player.playerId }/update">Edit</td>
+					<td><a href="/delete-player/${ player.playerId }" onclick="return confirm('Are you sure you want to delete this?')">Delete</td>
 				</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-		<button class="btn btn-link"><a href="/item/create">Create Item +</a></button>
+		<button class="btn btn-link"><a href="/player/create">Add Player +</a></button>
 	</main>
 </body>
 </html>
